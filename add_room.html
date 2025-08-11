@@ -1,0 +1,61 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG Management system</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PG Management System</h1>
+        <form id="roomForm">
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" required>
+
+            <label for="roomType">Room Type:</label>
+            <select id="roomType" required>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Triple">Triple</option>
+            </select>
+
+            <label for="roomRent">Rent (INR):</label>
+            <input type="number" id="roomRent" required>
+            <label for="roomLocation">Location:</label>
+            <input type="text" id="roomLocation" required>
+
+            <button type="submit">Add Room</button>
+        </form>
+
+        <div id="searchFilter">
+            <!-- Filters for city and rent -->
+            <label for="citySelect">Select City:</label>
+            <select id="citySelect">
+                <option value="">All Cities</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+            </select>
+
+            <label for="rentFilter">Rent Range:</label>
+            <select id="rentFilter">
+                <option value="">All</option>
+                <option value="low">Below ₹5000</option>
+                <option value="mid">₹5000 - ₹10000</option>
+                <option value="high">Above ₹10000</option>
+            </select>
+        </div>
+
+        <div id="roomList">
+            <h2>Available Rooms</h2>
+            <ul id="rooms"></ul>
+        </div>
+
+        <a href="rooms.html">View All Rooms</a> <!-- Link to view all rooms -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

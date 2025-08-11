@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details</title>
+   
+  
+     <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header>
+        <h1>Personal Details</h1>
+    </header>
+    <main class="details-container">
+        <form id="personal-details-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" placeholder="Enter your feedback here" rows="4" required></textarea>
+
+            <button type="button" onclick="saveDetails()">Save</button>
+        </form>
+
+        <div id="display-section">
+            <h2>Saved Details</h2>
+            <div id="details-output"></div>
+        </div>
+    </main>
+    <script>
+        const savedDetails = JSON.parse(localStorage.getItem('savedDetails')) || [];
+
+        // Function to save details to localStorage
+        function saveDetails() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+            const photoInput = document.getElementById('photo');
+
+            if (photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const photoURL = e.target.result;
+
+                    const detail = {
+                        name,
+                        email,
+                        feedback,
+                        photoURL
+                    };
+
+                    savedDetails.push(detail);
+
+                    // Save updated details to localStorage
+                    localStorage.setItem('savedDetails', JSON.stringify(savedDetails));
+
+                    displayDetails();
+
+                    // Reset the form after saving
+                    document.getElementById('personal-details-form').reset();
+                };
+
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                alert('Please upload a photo before saving.');
+            }
+        }
+
+        // Function to display saved details
+        function displayDetails() {
+            const detailsOutput = document.getElementById('details-output');
+            detailsOutput.innerHTML = '';
+
+            savedDetails.forEach((detail, index) => {
+                detailsOutput.innerHTML += `
+                    <div class="detail-entry">
+                        <h3>Entry ${index + 1}</h3>
+                        <p><strong>Name:</strong> ${detail.name}</p>
+                        <p><strong>Email:</strong> ${detail.email}</p>
+                        <p><strong>Feedback:</strong> ${detail.feedback}</p>
+                        <p><strong>Photo:</strong></p>
+                        <img src="${detail.photoURL}" alt="Uploaded Photo" style="max-width: 200px; max-height: 200px;">
+                        <hr>
+                    </div>
+                `;
+            });
+        }
+
+        // Display details on page load
+        window.onload = displayDetails;
+    </script>
+</body>
+</html>

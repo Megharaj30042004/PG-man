@@ -1,0 +1,32 @@
+[
+    {
+        "roomNumber": "101",
+        "roomType": "Single",
+        "roomRent": 5000,
+        "location": "Delhi"
+    },
+    {
+        "roomNumber": "102",
+        "roomType": "Double",
+        "roomRent": 7000,
+        "location": "Mumbai"
+    },
+    {
+        "roomNumber": "103",
+        "roomType": "Triple",
+        "roomRent": 4000,
+        "location": "Delhi"
+    },
+    {
+        "roomNumber": "104",
+        "roomType": "Single",
+        "roomRent": 6000,
+        "location": "Bangalore"
+    },
+    {
+        "roomNumber": "105",
+        "roomType": "Double",
+        "roomRent": 8000,
+        "location": "Mumbai"
+    }
+]
